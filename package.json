@@ -1,0 +1,29 @@
+{
+  "name": "small-hands-decorators",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "@tsconfig/node18": "18.2.2",
+    "@types/aws-lambda": "8.10.133",
+    "@types/node": "20.11.16",
+    "aws-cdk-lib": "2.91.0",
+    "aws-lambda": "1.0.7",
+    "constructs": "10.2.69",
+    "sst": "2.24.28",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "@sibipro/pit-logger": "2.73.15",
+    "dd-trace": "5.2.0"
+  }
+}

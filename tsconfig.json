@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": [
+        "src/core/*"
+      ],
+      "@functions/*": [
+        "src/functions/*"
+      ],
+      "@stacks/*": [
+        "stacks/*"
+      ]
+    }
+  },
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "include": [
+    "stacks",
+    "src"
+  ]
+}
