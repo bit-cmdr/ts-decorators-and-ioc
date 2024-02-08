@@ -9,8 +9,11 @@ export interface INotesRepository {
   delete(noteId: string): Promise<void>;
 }
 
-export function NotesRepository(): INotesRepository {
-  const notesStore: { [id: string]: Note } = {
+export class NotesRepository implements INotesRepository {
+  private readonly _notesStore: { [id: string]: Note }
+
+  constructor() {
+  this._notesStore = {
     id1: {
       noteId: 'id1',
       userId: 'user1',
@@ -24,46 +27,49 @@ export function NotesRepository(): INotesRepository {
       content: 'Hello Old World! Old note.',
     },
   };
+}
 
-  return {
-    async byId(noteId: string) {
-      return tracer.trace('notes-repository-by-id', () => {
-        return notesStore[noteId] ?? undefined;
-      });
-    },
-    async find(filter?: Partial<Note>) {
-      return tracer.trace('notes-repository-find', () => {
-        if (!filter) {
-          return Object.values(notesStore);
-        }
+  async byId(noteId: string) {
+    return tracer.trace('notes-repository-by-id', () => {
+      return this._notesStore[noteId] ?? undefined;
+    });
+  }
 
-        return Object.values(notesStore).filter((note) =>
-          Object.keys(filter).some(
-            (key) => note[key as keyof Note] === filter[key as keyof Note],
-          ),
-        );
-      });
-    },
-    async create(note: Note) {
-      return tracer.trace('notes-repository-create', () => {
-        notesStore[note.noteId] = note;
-        return note;
-      });
-    },
-    async update(noteId: string, note: Partial<Omit<Note, 'noteId'>>) {
-      return tracer.trace('notes-repository-update', () => {
-        const existingNote = notesStore[noteId];
-        if (!existingNote) {
-          throw new Error('Note not found');
-        }
-        notesStore[noteId] = { ...existingNote, ...note };
-        return notesStore[noteId];
-      });
-    },
-    async delete(noteId: string) {
-      return tracer.trace('notes-repository-delete', () => {
-        delete notesStore[noteId];
-      });
-    },
-  };
+  async find(filter?: Partial<Note>) {
+    return tracer.trace('notes-repository-find', () => {
+      if (!filter) {
+        return Object.values(this._notesStore);
+      }
+
+      return Object.values(this._notesStore).filter((note) =>
+        Object.keys(filter).some(
+          (key) => note[key as keyof Note] === filter[key as keyof Note],
+        ),
+      );
+    });
+  }
+
+  async create(note: Note) {
+    return tracer.trace('notes-repository-create', () => {
+      this._notesStore[note.noteId] = note;
+      return note;
+    });
+  }
+
+  async update(noteId: string, note: Partial<Omit<Note, 'noteId'>>) {
+    return tracer.trace('notes-repository-update', () => {
+      const existingNote = this._notesStore[noteId];
+      if (!existingNote) {
+        throw new Error('Note not found');
+      }
+      this._notesStore[noteId] = { ...existingNote, ...note };
+      return this._notesStore[noteId];
+    });
+  }
+
+  async delete(noteId: string) {
+    return tracer.trace('notes-repository-delete', () => {
+      delete this._notesStore[noteId];
+    });
+  }
 }
