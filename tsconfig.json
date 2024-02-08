@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "sourceMap": true,
+    "types": [
+      "reflect-metadata"
+    ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitThis": false,
     "baseUrl": ".",
     "paths": {
       "@core/*": [

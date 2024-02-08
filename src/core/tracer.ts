@@ -26,4 +26,37 @@ tracer.use('aws-sdk', {
   lambda: true,
 });
 
+export function apm<Args extends unknown[], Return>(className: string) {
+  return (
+    _: unknown,
+    methodName: string,
+    context: TypedPropertyDescriptor<(...args: Args) => Return>,
+  ) => {
+    let fn: (...args: Args) => Return;
+    let patchedFn: ((...args: Args) => Return) | undefined;
+    const prefix = `${className}.${methodName}`;
+
+    if (context.value) {
+      fn = context.value;
+    }
+
+    return {
+      configurable: true,
+      enumerable: false,
+      get() {
+        if (!patchedFn) {
+          patchedFn = tracer.wrap(prefix, (...args: Args) =>
+            fn.call(this, ...args),
+          );
+        }
+        return patchedFn;
+      },
+      set: (newFn: (...args: Args) => Return) => {
+        patchedFn = undefined;
+        fn = newFn;
+      },
+    };
+  };
+}
+
 export default tracer;

@@ -14,6 +14,9 @@ dependencies:
   dd-trace:
     specifier: 5.2.0
     version: 5.2.0
+  reflect-metadata:
+    specifier: ^0.2.1
+    version: 0.2.1
 
 devDependencies:
   '@biomejs/biome':
@@ -5188,6 +5191,10 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /reflect-metadata@0.2.1:
+    resolution: {integrity: sha512-i5lLI6iw9AU3Uu4szRNPPEkomnkjRTaVt9hy/bn5g/oSzekBSMeLZblcjP74AW0vBabqERLLIrz+gR8QYR54Tw==}
+    dev: false
 
   /reinterval@1.1.0:
     resolution: {integrity: sha512-QIRet3SYrGp0HUHO88jVskiG6seqUGC5iAG7AwI/BV4ypGcuqk9Du6YQBUOUqm9c8pw1eyLoIaONifRua1lsEQ==}
