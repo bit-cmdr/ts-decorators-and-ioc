@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 /* eslint-disable @typescript-eslint/ban-types */
 import pkg from 'dd-trace';
 
