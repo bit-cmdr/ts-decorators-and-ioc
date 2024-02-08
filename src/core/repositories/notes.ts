@@ -1,3 +1,4 @@
+import { injectable } from 'inversify';
 import { apm } from '../tracer.js';
 import { Note } from '@core/types.js';
 
@@ -9,6 +10,7 @@ export interface INotesRepository {
   delete(noteId: string): Promise<void>;
 }
 
+@injectable()
 export class NotesRepository implements INotesRepository {
   private readonly _notesStore: { [id: string]: Note };
 

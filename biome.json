@@ -23,6 +23,9 @@
 		"formatter": {
 			"quoteStyle": "single",
 			"trailingComma": "all"
+		},
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
 		}
 	}
 }

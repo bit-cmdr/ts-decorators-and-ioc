@@ -1,9 +1,8 @@
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { NotesService } from '@core/services/notes.js';
-import { NotesRepository } from '@core/repositories/notes.js';
+import { INotesService } from '@core/services/notes.js';
+import { container } from '@core/bootstrap.js';
 
-const notesRepository = new NotesRepository();
-const notesService = new NotesService(notesRepository);
+const notesService = container.get<INotesService>('INotesService');
 
 export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   if (!event.pathParameters?.id) {

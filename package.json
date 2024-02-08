@@ -26,6 +26,7 @@
     "@sibipro/pit-logger": "2.73.15",
     "datadog-cdk-constructs-v2": "^1.12.0",
     "dd-trace": "5.2.0",
+    "inversify": "^6.0.2",
     "reflect-metadata": "^0.2.1"
   }
 }

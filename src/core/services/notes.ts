@@ -1,4 +1,5 @@
 import { apm } from '../tracer.js';
+import { injectable, inject } from 'inversify';
 import logger from '@core/logger.js';
 import { INotesRepository } from '@core/repositories/notes.js';
 import { Note } from '@core/types.js';
@@ -15,9 +16,12 @@ export interface INotesService {
   delete(noteId: string): Promise<void>;
 }
 
+@injectable()
 export class NotesService implements INotesService {
   private readonly _notesRepository: INotesRepository;
-  constructor(notesRepository: INotesRepository) {
+  constructor(
+    @inject('INotesRepository') notesRepository: INotesRepository,
+    ) {
     this._notesRepository = notesRepository;
   }
 

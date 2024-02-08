@@ -14,6 +14,9 @@ dependencies:
   dd-trace:
     specifier: 5.2.0
     version: 5.2.0
+  inversify:
+    specifier: ^6.0.2
+    version: 6.0.2
   reflect-metadata:
     specifier: ^0.2.1
     version: 0.2.1
@@ -4327,6 +4330,10 @@ packages:
 
   /int64-buffer@0.1.10:
     resolution: {integrity: sha512-v7cSY1J8ydZ0GyjUHqF+1bshJ6cnEVLo9EnjB8p+4HDRPZc9N5jjmvUV7NvEsqQOKyH0pmIBFWXVQbiS0+OBbA==}
+    dev: false
+
+  /inversify@6.0.2:
+    resolution: {integrity: sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==}
     dev: false
 
   /ipaddr.js@1.9.1:
